@@ -23,6 +23,7 @@ class ZoogleEpisodeParserTest {
     private ZoogleEpisodeParser episodeParser;
 
 
+
     @BeforeEach
     void setUp() {
         episodeParser = new ZoogleEpisodeParser(new ZoogleDocumentSelector(),
@@ -36,8 +37,8 @@ class ZoogleEpisodeParserTest {
     @Test
     void parseDOMDocument() {
 //        WebPage webPage = webClient.fetchWebPage("https://zooqle.com/search?q=under+the+dome+s03e12");
-        WebPage webPage = new WebPage(ZoogleUtils.getZooglePage());
-        DOMDocument document = new ZoogleDOMDocument(webPage);
+        WebPage webPage = new WebPage().setContent(ZoogleUtils.getZooglePage());
+        DOMDocument document = new ZoogleDOMDocument().setContent(webPage);
         List<Torrent> torrents = episodeParser.parseDOMDocument(document);
 
         Logger logger = LogManager.getLogger();

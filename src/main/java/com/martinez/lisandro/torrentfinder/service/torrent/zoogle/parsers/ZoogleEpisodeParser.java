@@ -10,14 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @Service
 public class ZoogleEpisodeParser implements EpisodeParser {
-
-    private static final Pattern TITLE = Pattern.compile("[^(<\\/?hl>)]");
-    private static final Pattern LINK = Pattern.compile("(<.?hl>)(\\s)*");
 
     private ZoogleDocumentSelector documentSelector;
 
@@ -40,8 +36,6 @@ public class ZoogleEpisodeParser implements EpisodeParser {
         this.leechersCriteria = leechersCriteria;
         this.seederCriteria = seederCriteria;
     }
-
-    @Autowired
 
     @Override
     public List<Torrent> parseDOMDocument(DOMDocument document) {
@@ -94,22 +88,16 @@ public class ZoogleEpisodeParser implements EpisodeParser {
 
     private String parseTitle(String titleHtml) {
         LogManager.getLogger().info("TITLE ------------------> " + titleHtml);
-
-//        String title = TITLE.matcher(titleHtml).appendReplacement("");
-//        title = title.replaceAll("\n", "");
-//        LogManager.getLogger().info("TITLE ------------------> " + title);
-
-
         return titleHtml;
     }
 
-    private double parseSize(String sizeHtml) {
+    private int parseSize(String sizeHtml) {
         LogManager.getLogger().info("SIZE ------------------> " + sizeHtml);
         String[] sizeAndUnitMeasure = sizeHtml.split(" ");
 
-        if (sizeAndUnitMeasure.length < 2) return 0.0;
+        if (sizeAndUnitMeasure.length < 2) return 0;
 
-        double size = parseDouble(sizeAndUnitMeasure[0]);
+        int size = parseInteger(sizeAndUnitMeasure[0]);
         String unitMeasure = sizeAndUnitMeasure[1];
 
         if (unitMeasure.equals("GB")) {

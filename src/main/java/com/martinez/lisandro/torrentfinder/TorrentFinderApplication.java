@@ -9,5 +9,4 @@ public class TorrentFinderApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(TorrentFinderApplication.class, args);
 	}
-
 }

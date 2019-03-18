@@ -1,0 +1,46 @@
+spring:
+  profiles:
+    active: dev
+---
+spring:
+  profiles: prod
+
+  main:
+    banner-mode: "off"
+
+  data:
+    mongodb:
+      uri: mongodb://localhost/torrentsTest
+      authentication-database: admin
+      username: root
+      password: root
+logging:
+  file: logs/production_app.log
+  pattern:
+    file: "%d %-5level [%thread] %logger{0} : %msg%n"
+  level:
+    org.springframework.web: WARN
+    guru.springframework.controllers: WARN
+#servers:
+---
+spring:
+  profiles: dev
+  main:
+    banner-mode: "off"
+#  data:
+#    mongodb:
+#      uri: mongodb://localhost/torrentsTest
+logging:
+  file: logs/dev_app.log
+  pattern:
+    console: "%d{yyyy-MMM-dd HH:mm:ss.SSS} [%thread] %highlight(%-5level) %cyan(%logger{15}) - %msg %n"
+    file: "%d %-5level [%thread] %logger : %msg%n"
+  level:
+    org.springframework.web: DEBUG
+    guru.springframework.controllers: DEBUG
+    root: INFO
+    org.springframework.data.mongodb.core.MontoTemplate: DEBUG
+
+server:
+  address: 127.0.0.1
+  port: 8080

@@ -40,8 +40,9 @@ dependencies {
 	testCompile 'org.junit.jupiter:junit-jupiter-params:5.3.2'
 	testCompile 'org.mockito:mockito-junit-jupiter:2.23.0'
 	testCompile 'org.assertj:assertj-core:3.11.1'
-	
-	
+	testCompile group: 'de.flapdoodle.embed', name: 'de.flapdoodle.embed.mongo', version: '2.2.0'
+
+
 	//torrent
 	compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.7'
 	implementation 'org.jsoup:jsoup:1.11.3'

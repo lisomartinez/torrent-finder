@@ -16,7 +16,7 @@ class ZoogleWebClientTest {
 
     @BeforeEach
     void setUp() {
-        client = new ZoogleWebClient();
+        client = new ZoogleWebClient(new WebPage());
     }
 
     @Test
@@ -29,7 +29,7 @@ class ZoogleWebClientTest {
 
     @Test
     void fetchWebPage_invalidURL_ShouldThrowZoogleWebClientErrorException() {
-        String episodeUrl = "https://zooqle.com/search?q=under+the+dome+s03e13";
+        String episodeUrl = "https://ooqle.com/search?q=under+the+dome+s03e13";
         assertThrows(ZoogleWebClientErrorException.class, () -> client.fetchWebPage(episodeUrl));
     }
 
