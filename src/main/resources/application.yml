@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: dev
+    active: test
 ---
 spring:
   profiles: prod
@@ -24,6 +24,30 @@ logging:
 #servers:
 ---
 spring:
+  profiles: test
+
+  main:
+    banner-mode: "off"
+
+  data:
+    mongodb:
+      uri: mongodb://root:root@localhost
+      authentication-database: admin
+      database: torrents
+logging:
+  file: logs/production_app.log
+  pattern:
+    file: "%d %-5level [%thread] %logger{0} : %msg%n"
+  level:
+    org.springframework.web: WARN
+    guru.springframework.controllers: WARN
+    root: INFO
+    org.springframework.data.mongodb.core.MontoTemplate: DEBUG
+server:
+  address: 127.0.0.1
+  port: 8088
+---
+spring:
   profiles: dev
   main:
     banner-mode: "off"
@@ -43,4 +67,4 @@ logging:
 
 server:
   address: 127.0.0.1
-  port: 8080
+  port: 8088

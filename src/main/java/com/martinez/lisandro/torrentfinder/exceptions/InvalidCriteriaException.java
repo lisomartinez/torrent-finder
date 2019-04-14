@@ -3,16 +3,16 @@ package com.martinez.lisandro.torrentfinder.exceptions;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ResponseStatus(HttpStatus.NOT_FOUND)
-public class PageNotFoundException extends RuntimeException {
+@ResponseStatus(HttpStatus.BAD_REQUEST)
+public class InvalidCriteriaException extends RuntimeException {
     public static final String DESCRIPTION = "Page Not Found";
-    private static final long serialVersionUID = 112075667688546379L;
+    private static final long serialVersionUID = 212075667688546372L;
 
-    public PageNotFoundException() {
+    public InvalidCriteriaException() {
         super(DESCRIPTION);
     }
 
-    public PageNotFoundException(String message) {
+    public InvalidCriteriaException(String message) {
         super(DESCRIPTION + ". " + message);
     }
 }
